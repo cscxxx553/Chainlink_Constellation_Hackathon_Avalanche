@@ -1,40 +1,25 @@
-## Getting Started
+## Content
+pages/index.tsx : The DApp portal page.  
+pages/_app.tsx : The _app file is called during each page initialization.  
+const/constants.ts : Contract address, Chain and Key alias.  
+components/NFT.tsx : NFT metadata.  
+components/NFTGrid.tsx : Loop and display NFTs in a grid.   
 
-Create a project using this example:
 
-```bash
-npx thirdweb create --template next-typescript-starter
-```
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-On `pages/_app.tsx`, you'll find our `ThirdwebProvider` wrapping your app, this is necessary for our [hooks](https://portal.thirdweb.com/react) and
-[UI Components](https://portal.thirdweb.com/ui-components) to work.
-
-## Environment Variables
-
-To run this project, you will need to add environment variables. Check the `.env.example` file for all the environment variables required and add it to `.env.local` file or set them up on your hosting provider.
-
-## Deploy to IPFS
-
-Deploy a copy of your application to IPFS using the following command:
-
-```bash
-yarn deploy
-```
-
-## Learn More
+## References
 
 To learn more about thirdweb and Next.js, take a look at the following resources:
-
+- [Chainlink Automation Compatible Contract](https://docs.chain.link/chainlink-automation/guides/compatible-contracts) - Learn how to make smart contracts that are compatible with Automation.
+- [Chainlink Data Feed](https://docs.chain.link/data-feeds) - Learn how to read price from smart contract.
 - [thirdweb React Documentation](https://docs.thirdweb.com/react) - learn about our React SDK.
 - [thirdweb TypeScript Documentation](https://docs.thirdweb.com/typescript) - learn about our JavaScript/TypeScript SDK.
 - [thirdweb Portal](https://docs.thirdweb.com) - check our guides and development resources.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Templates](https://thirdweb.com/templates)
+- [Templates](https://thirdweb.com/templates) - Thirdweb templates.
+- [Thirdwe TBA NFT ERC6551 + ERC4337](https://www.youtube.com/watch?v=kZakHQMHs1Q&t=1669s) - Learn how to create a Token Bound Account NFT - ERC6551 + ERC4337.
+- [Next.js](https://nextjs.org/) - Learn Next.js.
+- [UniswapV3Swap](https://docs.uniswap.org/contracts/v3/overview) - Learn how to swap on Uniswap.
+- [Openzeppelin ERC-1155](https://docs.openzeppelin.com/contracts/5.x/erc1155) - Lear how to creat ERC-1155 smart contract.
 
-You can check out [the thirdweb GitHub organization](https://github.com/thirdweb-dev) - your feedback and contributions are welcome!
 
-## Join our Discord!
 
-For any questions, suggestions, join our discord at [https://discord.gg/thirdweb](https://discord.gg/thirdweb).
