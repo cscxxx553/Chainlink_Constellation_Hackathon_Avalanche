@@ -1,7 +1,11 @@
 ## Content
 pages/index.tsx : The DApp portal page.  
 pages/_app.tsx : The _app file is called during each page initialization.  
-const/constants.ts : Contract address, Chain and Key alias.  
+const/constants.ts : Contract address, Chain, Destination Smart Wallet Address and Key alias.  
+The Destination Smart Wallet Address is hard-code now in constants.ts:
+```
+export const DESTINATIONWALLET_ADDRESS: string = '0x5474C31B545A8101c980C388a1551A56AD46FB59';
+```
 components/NFT.tsx : NFT metadata.  
 components/NFTGrid.tsx : Loop and display NFTs in a grid.   
 
