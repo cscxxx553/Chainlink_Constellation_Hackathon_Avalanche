@@ -24,6 +24,6 @@ To learn more about thirdweb and Next.js, take a look at the following resources
 - [Next.js](https://nextjs.org/) - Learn Next.js.
 - [UniswapV3Swap](https://docs.uniswap.org/contracts/v3/overview) - Learn how to swap on Uniswap.
 - [Openzeppelin ERC-1155](https://docs.openzeppelin.com/contracts/5.x/erc1155) - Lear how to creat ERC-1155 smart contract.
-
+- [11 Ways To Use Chainlink Functions in Your Decentralized Applications](https://blog.chain.link/ways-to-use-chainlink-functions/#the_graph__leveraging_indexed_data_for_defi_applications)
 
 
