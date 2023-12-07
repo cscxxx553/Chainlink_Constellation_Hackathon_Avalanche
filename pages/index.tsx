@@ -27,7 +27,10 @@ const Home: NextPage = () => {
   const { mutateAsync: burnNft, isLoading: loadingBurnNft, error } = useBurnNFT(contract);
   const [ cardboardBoxID, setCardboardBoxID ] = useState('');
   const [ recyclingNuber, setRecyclingNuber ] = useState('');
-  const [seconds, setSeconds] = useState(0);
+  const [ seconds, setSeconds ] = useState(0);
+  const [ dESTINATIONWALLET, setDESTINATIONWALLET] = useState('');
+  const [ openToMumbaiMessage, setOpenToMumbaiMessage ] = useState('');
+  const [ destinationAddressEmptyError, setDestinationAddressEmptyError ] = useState('');
   
   const { contract:avaCatContract } = useContract(AVACATNFT_ADDRESS);
   const { contract:getWeatherContract } = useContract(FUNCTION_GETWEATHER_ADDRESS);
@@ -61,10 +64,10 @@ const Home: NextPage = () => {
     const firstChar: number = parseInt(str[0]);
     const randomInteger: number = Math.floor(Math.random() * 10);
     if(randomInteger >= firstChar){
-      setOpenMessage("Lucky you. your number: "+randomInteger+" is greater than the random: "+firstChar+" need get weather, mint cat and recycling comfirmation." )
+      setOpenToMumbaiMessage("Lucky you. your number: "+randomInteger+" is greater than the random: "+firstChar+" need get weather, mint cat and recycling comfirmation." )
       pickUpACatOnMumbai();
     }else{
-      setOpenMessage("Try again. your number: "+randomInteger+" is less than the random: "+firstChar)
+      setOpenToMumbaiMessage("Try again. your number: "+randomInteger+" is less than the random: "+firstChar)
     }
   }
 
@@ -93,21 +96,26 @@ const Home: NextPage = () => {
   const payFeesIn = 1; // Number
 
   const pickUpACatOnMumbai = async() => {
-    await sourceMinterContract?.call("mint",[destinationChainSelector, DESTINATIONMINTER_ADDRESS, payFeesIn, DESTINATIONWALLET_ADDRESS]);
-    await contract?.call("burnBatch",[address, [cardboardBoxID], [recyclingNuber]]);
-    setCardboardBoxID('');
-    setRecyclingNuber('');
-    setAvaCatNFTs([]);
-    setAvaCatURI([]);
-    if(avaCatURI.length > 0){
-      const elements = document.querySelectorAll(`.${'avaCatDiv'}`);
-      
-        for (let i = 0; i < elements.length; i++) {
-          const element = elements[i];
-          if (element.parentNode) {
-            element.parentNode.removeChild(element);
+    if(dESTINATIONWALLET!=''){
+      await sourceMinterContract?.call("mint",[destinationChainSelector, DESTINATIONMINTER_ADDRESS, payFeesIn, dESTINATIONWALLET]);
+      await contract?.call("burnBatch",[address, [cardboardBoxID], [recyclingNuber]]);
+      setCardboardBoxID('');
+      setRecyclingNuber('');
+      setAvaCatNFTs([]);
+      setAvaCatURI([]);
+      if(avaCatURI.length > 0){
+        const elements = document.querySelectorAll(`.${'avaCatDiv'}`);
+        
+          for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
+            if (element.parentNode) {
+              element.parentNode.removeChild(element);
+            }
           }
-        }
+      }
+      setDestinationAddressEmptyError('');
+    }else{
+      setDestinationAddressEmptyError('Must give the destination wallet address.');
     }
     
   }
@@ -211,12 +219,24 @@ const Home: NextPage = () => {
               </div>
               <div>{openMessage}</div>
               <br />
+              
+              <h4>Destination wallet address:</h4>
+              <input
+                value={dESTINATIONWALLET}
+                onChange={(e) => {
+                  setDESTINATIONWALLET(e.target.value);
+                }}
+              />
+              <br />
+              <br />
               <div>
                 <Web3Button
                   contractAddress={AVACATNFT_ADDRESS}
                   action={(avaCatContract) => openCardboardtoMumbai()}
                 >Open Cardboard Box To Mumbai</Web3Button>
               </div>
+              <div>{openToMumbaiMessage}</div>
+              <div>{destinationAddressEmptyError}</div>
               <br />
                 <Web3Button
                   contractAddress={EDITIONDROP_ADDRESS}
